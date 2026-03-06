@@ -1,6 +1,6 @@
 # ACFR Sensitivity Analysis Extraction Pipeline
 
-Automated extraction of discount-rate sensitivity data from state and local government Annual Comprehensive Financial Reports (ACFRs) using AI-powered document processing.
+Automated extraction of discount-rate sensitivity data from state pension plans' Annual Comprehensive Financial Reports (ACFRs) using AI-powered document processing.
 
 ## Overview
 
