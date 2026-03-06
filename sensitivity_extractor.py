@@ -27,7 +27,7 @@ from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 # ─────────────────────────────────────────────
 # Configuration
 # ─────────────────────────────────────────────
-API_KEY = "AIzaSyCyk9ooLvfB-x_vEww-izumFF382U5-YXY"  # Replace or use --api-key flag
+API_KEY = ""  # Replace or use --api-key flag
 
 # ─────────────────────────────────────────────
 # State abbreviation → full name mapping
