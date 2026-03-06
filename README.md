@@ -81,24 +81,43 @@ A separate GUI for validating extracted data against the source documents:
 pip install -r requirements.txt
 ```
 
-You will need a Google Gemini API key. Set it in `sensitivity_extractor.py` or as an environment variable (see the module for details).
 
-## Usage
+Automated extraction of discount-rate sensitivity data from state and local government Annual Comprehensive Financial Reports (ACFRs) using AI-powered document processing.
 
-**Run the extraction pipeline:**
-```bash
-python sensitivity_gui.py
+## Overview
+
+Public pension plans are required to disclose the sensitivity of their net pension liability (NPL) to changes in the discount rate. This information is buried across hundreds of ACFRs — lengthy PDF financial reports that vary widely in format and structure. Manually locating and transcribing this data from 200+ reports (50,000+ pages) took weeks.
+
+This pipeline compresses that process into a single day by:
+
+1. Scanning each ACFR PDF to identify pages containing sensitivity analysis tables
+
+2. Extracting structured data (plan names, discount rates, NPL at ±1%) using Google's Gemini API
+
+3. Matching extracted plan names against a master list of known pension plans
+
+4. Validating results with automated checks and a side-by-side QA review tool
+
+5. Outputting clean, analysis-ready data in Excel
+
+## Repo Structure
+
 ```
-
-**Run the QA checker:**
-```bash
-python sensitivity_checking.py
+acfr-sensitivity-extraction/
+│
+├── sensitivity_extractor.py       # Core extraction logic: PDF page detection,
+│                                  # Gemini API integration, plan matching,
+│                                  # validation, and Excel output
+│
+├── sensitivity_gui.py             # PyQt5 GUI for running the full extraction
+│                                  # pipeline with progress tracking and caching
+│
+├── sensitivity_checking.py        # QA review tool: displays extracted data
+│                                  # alongside source PDF pages for verification
+│
+├── start_sensitivity_extraction_v2.bat  # Windows launcher (extraction GUI)
+├── sensitivity_checking.bat             # Windows launcher (QA tool)
+│
+├── requirements.txt
+└── README.md
 ```
-
-Or use the `.bat` files on Windows.
-
-## Notes
-
-- This tool was built for a specific research workflow at The Pew Charitable Trusts analyzing public pension plan data. The extraction prompt and validation logic are tailored to the structure of GASB-required sensitivity disclosures in ACFRs.
-- No data from actual ACFRs is included in this repository.
-- The Gemini API key is not included. You will need to supply your own.
